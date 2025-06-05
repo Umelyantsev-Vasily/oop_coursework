@@ -8,15 +8,33 @@ class JSONFileWorker(AbstractFileWorker):
     """Класс для работы с JSON-файлами"""
 
     def __init__(self, filename: str = 'vacancies.json'):
-        self._filename = filename
+        # Путь к папке data
+        self._data_dir = 'data'
+        # Полный путь к файлу
+        self._filename = os.path.join(self._data_dir, filename)
+
+        # Создаем папку data, если она не существует
+        if not os.path.exists(self._data_dir):
+            os.makedirs(self._data_dir)
+
+        # Создаем файл, если он не существует
         if not os.path.exists(self._filename):
             with open(self._filename, 'w', encoding='utf-8') as f:
                 json.dump([], f)
 
     def read_file(self) -> List[Dict]:
         """Чтение данных из файла"""
-        with open(self._filename, 'r', encoding='utf-8') as f:
-            return json.load(f)
+        try:
+            with open(self._filename, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                # Убедиться, что это список и каждый элемент - словарь
+                if isinstance(data, list):
+                    return data
+                else:
+                    return []
+        except (json.JSONDecodeError, FileNotFoundError):
+            # Если файл поврежден или не существует, возвращаем пустой список
+            return []
 
     def add_to_file(self, data: List[Dict]) -> None:
         """Добавление данных в файл без дублирования"""

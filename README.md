@@ -36,22 +36,22 @@ pip install -r requirements.txt
 Структура проекта
 ```
 oop_coursework/
-
-├── .gitignore            # Игнорируемые файлы (кеш Python, JSON-файлы и т.д.)
-├── README.md             # Документация проекта
-├── main.py              # Главный скрипт для запуска
 │
-├── src/                 # Основной пакет с кодом
-│   ├── __init__.py      # Файл инициализации пакета
+├── .gitignore            # Файлы и папки, которые игнорируются Git (например, __pycache__, .env, data/)
+├── README.md             # Основная информация о проекте
+├── main.py               # Точка входа программы — запуск пользовательского интерфейса
+│
+├── src/                  # Основной пакет проекта
+│   ├── __init__.py       # Инициализация пакета src
 │   │
-│   ├── abstract_classes.py  # Абстрактные классы API и FileWorker
-│   ├── api_connector.py     # HeadHunterAPI реализация
-│   ├── file_worker.py       # JSONFileWorker реализация
-│   ├── vacancy.py           # Класс Vacancy
-│   └── utils.py             # Вспомогательные функции
+│   ├── abstract_classes.py  # Абстрактные классы: AbstractAPIConnector, AbstractFileWorker
+│   ├── api_connector.py     # Реализация API-клиента для HeadHunter
+│   ├── file_worker.py       # Класс JSONFileWorker для работы с файлами
+│   ├── vacancy.py           # Класс Vacancy для обработки данных о вакансиях
+│   └── utils.py             # Вспомогательные функции (фильтрация, сортировка и т.д.)
 │
-└── data/                # (Опционально) Папка для хранения данных
-    └── vacancies.json   # Файл с сохранёнными вакансиями
+└── data/                 # Папка для хранения сохранённых данных
+    └── vacancies.json    # Файл с вакансиями в формате JSON
 ```
 # Ключевые технологии
 - Python 3.10+
