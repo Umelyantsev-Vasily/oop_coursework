@@ -33,4 +33,3 @@ class AbstractFileWorker(ABC):
     def delete_from_file(self, condition: Dict) -> None:
         """Удаление данных из файла по условию"""
         pass
-

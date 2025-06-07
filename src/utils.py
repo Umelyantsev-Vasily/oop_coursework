@@ -6,16 +6,16 @@ def convert_to_vacancy_objects(data: List[Dict]) -> List[Vacancy]:
     """Конвертация данных API в объекты Vacancy"""
     vacancies = []
     for item in data:
-        salary = item.get('salary')
-        salary_from = salary.get('from') if salary else None
-        salary_to = salary.get('to') if salary else None
+        salary = item.get("salary")
+        salary_from = salary.get("from") if salary else None
+        salary_to = salary.get("to") if salary else None
 
         vacancy = Vacancy(
-            title=item.get('name', ''),
-            url=item.get('alternate_url', ''),
+            title=item.get("name", ""),
+            url=item.get("alternate_url", ""),
             salary_from=salary_from,
             salary_to=salary_to,
-            description=item.get('snippet', {}).get('requirement', '')
+            description=item.get("snippet", {}).get("requirement", ""),
         )
         vacancies.append(vacancy)
     return vacancies
